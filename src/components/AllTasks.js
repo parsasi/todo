@@ -11,9 +11,7 @@ export default function AllTasks(props){
                 aria-labelledby="list-heading"
             >
                 
-                { props.filter === 'all' ?
-                    props.tasks.map(item => <Todo key={item.id} text={item.text} checked={item.checked} id={item.id} completeTask={props.completeTask} deleteTask={props.deleteTask} updateTask={props.updateTask} /> )
-                    : props.tasks.filter(filter).map(item => <Todo key={item.id} text={item.text} checked={item.checked} id={item.id} completeTask={props.completeTask} deleteTask={props.deleteTask} updateTask={props.updateTask} /> )
+                {props.tasks.filter(filter).map(item => <Todo key={item.id} text={item.text} status={item.status} id={item.id} changeTaskStatus={props.changeTaskStatus} deleteTask={props.deleteTask} updateTask={props.updateTask} /> )
                 }
             </ul>
         </>

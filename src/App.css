@@ -189,6 +189,17 @@ body {
   position: relative;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
 }
+
+.todoapp.dark{
+  background-color: #565656;
+}
+
+.todoapp.dark *{
+  color:white;
+}
+.todoapp.dark button{
+  border-color: #ffffff !important;
+}
 @media screen and (min-width: 550px) {
   .todoapp {
     padding: 4rem;
@@ -326,4 +337,71 @@ body {
 }
 .c-cb > input[type="checkbox"]:checked + label::after {
   opacity: 1;
+}
+.themeSwitch{
+  position: fixed;
+  top:5px;
+  right:5px;
+}
+nav ul{
+  display: flex;
+}
+.navLink{
+  display:inline-block;
+  padding:5px 10px;
+  color:black;
+}
+
+.universities{
+  background: #fff;
+  margin: 2rem 0 4rem 0;
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+}
+.university-filter{
+  width:100%;
+  height:120px;
+  margin-top:50px;
+}
+.filters{
+  display: flex;
+  justify-content: space-evenly;
+}
+.university-filter input{
+  width:40%;
+  border:none;
+  padding:10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+}
+.university-filter input:focus{
+  outline: none;
+}
+
+.universities-list{
+  width:100%;
+  padding:15px 5px;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.university{
+  width:40%;
+  margin:10px auto;
+  padding:10px 2.5% 35px 2.5%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+  
+}
+.university-link{
+  display: inline-block;
+  padding:5px 15px;
+  text-decoration: none;
+  color:#000000;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #CA3C3C;
+  color:#fff;
 }

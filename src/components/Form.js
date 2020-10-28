@@ -7,9 +7,14 @@ export default function Form(props){
         const textElement = document.querySelector('input#new-todo-input')
         const text = textElement.value
         if(text && typeof text === 'string'){
-            props.addTask({text , checked : false , id : nanoid()})
+            props.addTask({text , status : 0 , id : nanoid()})
             textElement.value = ""
         }
+    }
+
+    const clearClickHandler = (e) => {
+      e.preventDefault()
+      props.clearTasks()
     }
     return (
         <form>
@@ -27,6 +32,9 @@ export default function Form(props){
             />
             <button onClick={addClickHandler} className="btn btn__primary btn__lg">
               Add
+            </button>
+            <button onClick={clearClickHandler} className="btn btn__success btn__lg">
+              Clear
             </button>
           </form>
     )

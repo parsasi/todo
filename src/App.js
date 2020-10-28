@@ -1,58 +1,45 @@
-import React , {useMemo, useState} from 'react';
+import React from 'react';
 import './App.css';
-import AllTasks from './components/AllTasks'
-import FilterButtons from './components/FilterButtons'
-import Form from './components/Form'
-
-const FILTER_MAP = {
-  all : () => true,
-  active : item => !item.checked,
-  completed : item => item.checked
-}
-
-const FILTER_NAMES = Object.keys(FILTER_MAP)
+import MainPage from './components/MainPage'
+import { Switch , BrowserRouter as Router , Route , Link } from 'react-router-dom'
+import ThemeContextProvider from './components/ThemeContextProvider'
+import ThemeSwitchLogic from './components/ThemeSwitchLogic'
+import Universities from './components/Universities'
 
 
 function App(props) {
-  const [tasks , setTasks] = useState([])
-  const [filter , setFilter] = useState('all')
-
-
-  const addTask = (task) => {
-    const newTaskList = [task , ...tasks]
-    setTasks(_ => newTaskList)
-  }
-
-  const completeTask = (id) => {
-    const newTaskList = [...tasks].map(item => item.id === id ? {...item , checked : !item.checked} : item)
-    setTasks(newTaskList)
-  }
-
-  const deleteTask = (id) => {
-    const newTaskList = [...tasks].filter(item => item.id !== id)
-    setTasks(newTaskList)
-  }
-
-  const updateTask = (task) => {
-    const newTaskList = [...tasks].map(item => item.id === task.id ? {...item , ...task} : item)
-    setTasks(newTaskList)
-  }
-  let allTasks = []
-
-  useMemo(_ => {
-    allTasks = tasks
-  } , [tasks , setTasks])
   return (
-        <div className="todoapp stack-large">
-          <h1>TodoMatic</h1>
-          <Form addTask={addTask} />
-          <FilterButtons filterList={FILTER_NAMES} filter={filter} setFilter={setFilter} />
-          
-          <h2 id="list-heading">
-            {tasks.filter(item => !item.checked).length} tasks remaining
-          </h2>
-          <AllTasks filterMap={FILTER_MAP} filter={filter} tasks={tasks} completeTask={completeTask} updateTask={updateTask} deleteTask={deleteTask} />
-      </div>
+        <>
+        <ThemeContextProvider>
+        <ThemeSwitchLogic />
+          <Router>
+              <nav>
+                <ul>
+                  <li>
+                    <Link className="navLink" to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link className="navLink" to="/about">About</Link>
+                  </li>
+                  <li>
+                    <Link className="navLink" to="/uni">Universities</Link>
+                  </li>
+                </ul>
+              </nav>
+              <Switch>
+                  <Route path="/" exact>
+                      <MainPage />
+                  </Route>
+                  <Route path="/about" exact>
+                      <h1>About TodoMatic</h1>
+                  </Route>
+                  <Route path="/uni" exact>
+                    <Universities />
+                  </Route>
+              </Switch>
+          </Router> 
+      </ThemeContextProvider>
+      </>
   );
 }
 

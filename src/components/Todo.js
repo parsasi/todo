@@ -5,8 +5,8 @@ export default function Todo(props){
 
     const [isEditing , setIsEditing] = useState(false)
 
-    const taskChangeHandler = (e) => {
-      props.completeTask(props.id)
+    const taskChangeHandler = (status) => {
+      props.changeTaskStatus(props.id , status)
     }
 
     const deleteTaskHandler = (e) => {
@@ -48,10 +48,14 @@ export default function Todo(props){
   
       <li className="todo stack-small">
         <div className="c-cb">
-          <input id={props.id} onChange={taskChangeHandler} type="checkbox" defaultChecked={props.checked} />
-          <label className="todo-label" htmlFor={props.id}>
+          <p style={{fontSize : '2rem'}} className="todo-label">
             {props.text}
-          </label>
+          </p>
+          <>
+            <input id={props.id} onChange={_ => taskChangeHandler(0)} type="radio" name={props.id} checked={props.status === 0} />&nbsp; Not Started &nbsp;&nbsp;
+            <input id={props.id} onChange={_ => taskChangeHandler(1)} type="radio" name={props.id} checked={props.status === 1} />&nbsp; Started &nbsp;&nbsp;
+            <input id={props.id} onChange={_ => taskChangeHandler(2)} type="radio" name={props.id} checked={props.status === 2} />&nbsp; Completed  &nbsp;&nbsp;
+          </>
         </div>
         <div className="btn-group">
           <button type="button" className="btn" onClick={_ => setIsEditing(true)}>
